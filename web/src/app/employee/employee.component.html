@@ -1,0 +1,133 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Date Of Joining</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Present Employee</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of employeeDetails; let i = index" style="cursor: pointer;">
+      <td>{{ i+1 }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.surname }}</td>
+      <td>{{ data.email }}</td>
+      <td>{{ data.phone_no }}</td>
+      <td>{{ data.DOJ }}</td>
+      <td>{{ data.salary }}</td>
+      <td>{{ data.present_employee ? (data.present_employee) : "false"}}</td>
+      <td>
+        <button class="btn btn-light" (click)="editEmployee(data)">
+          <i class="bi bi-pencil-square"></i>
+        </button>
+        <button class="btn btn-light" (click)="deleteEmployee(data)">
+          <i class="bi bi-archive-fill"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-primary" id="employeeDetailsPopup" [hidden]="true" data-toggle="modal"
+  data-target="#exampleModalCenter"></button>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <span style="cursor: pointer;" data-dismiss="modal" aria-label="Close" id="closePopup">
+          <img src="../../assets/images/close.png" alt="close">
+        </span>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editFormDetails" (ngSubmit)="onSubmit(editFormDetails)" class="employee-form">
+          <h2 class="form-header">Add Employee Details</h2>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" autocomplete="off" formControlName="name" name="name">
+            <div *ngIf="formControls.name.hasError('required') && formControls.name.touched" class="text-danger">
+              Name is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="surname">Surname</label>
+            <input type="text" class="form-control" autocomplete="off" formControlName="surname" name="surname">
+            <div *ngIf="formControls.surname.hasError('required') && formControls.surname.touched" class="text-danger">
+              Surname is required
+            </div>
+          </div>
+
+          <div class="form-group flex-container">
+            <div class="flex-item">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" autocomplete="off" formControlName="email" name="email">
+              <div *ngIf="formControls.email.hasError('required') && formControls.email.touched" class="text-danger">
+                Email is required
+              </div>
+              <div *ngIf="formControls.email.hasError('email') && formControls.email.touched" class="text-danger">
+                Invalid email format
+              </div>
+            </div>
+
+            <div class="flex-item">
+              <label for="phoneNo">Phone Number</label>
+              <input type="text" class="form-control" autocomplete="off" formControlName="phone_no" name="phone_no">
+              <div *ngIf="formControls.phone_no.hasError('required') && formControls.phone_no.touched"
+                class="text-danger">
+                Phone Number is required
+              </div>
+              <div
+                *ngIf="editFormDetails.get('phone_no').hasError('invalidPhoneNumber') && editFormDetails.get('phone_no').touched"
+                class="text-danger">
+                Invalid phone number format
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group flex-container">
+            <div class="flex-item">
+              <label for="DOJ">Date of Joining</label>
+              <input type="text" class="form-control" autocomplete="off" formControlName="DOJ" name="DOJ">
+              <div *ngIf="formControls.DOJ.hasError('required') && formControls.DOJ.touched" class="text-danger">
+                Date of Joining is required
+              </div>
+            </div>
+
+            <div class="flex-item">
+              <label for="salary">Salary</label>
+              <input type="number" class="form-control" autocomplete="off" formControlName="salary" name="salary">
+              <div *ngIf="formControls.salary.hasError('required') && formControls.salary.touched" class="text-danger">
+                Salary is required
+              </div>
+              <div *ngIf="formControls.salary.hasError('invalidSalary') && formControls.salary.touched"
+                class="text-danger">
+                Salary must be a positive number
+              </div>
+            </div>
+          </div>
+          <div class="form-group d-flex">
+            <input type="checkbox" id="presentEmployee" formControlName="present_employee" name="present_employee"
+              style="margin-right: 10px;">
+            <label for="presentEmployee">Present Employee</label>
+          </div>
+          <div class="text-end">
+            <button type="submit" *ngIf="!disableForm" class="btn btn-primary underlineHover"
+              [disabled]="!editFormDetails.valid">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" (click)="editFormValues()" class="btn btn-primary">{{formButton}}</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>

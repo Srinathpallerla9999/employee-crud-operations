@@ -1,0 +1,53 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="text-center mb-4">
+                <img src="../../../assets/images/login.png" class="img-fluid" alt="User Icon" />
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control" formControlName="email" name="email"
+                        placeholder="Email">
+                    <div *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched"
+                        class="text-danger">
+                        Email is required
+                    </div>
+                    <div *ngIf="loginForm.get('email').hasError('email') && loginForm.get('email').touched"
+                        class="text-danger">
+                        Invalid email format
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="d-flex">
+                        <input type="{{passwordType}}" autocomplete="off" class="form-control" formControlName="password"
+                            name="password" placeholder="Password">
+                        <button class="btn btn-outline-secondary border-0" type="button"
+                            (click)="togglePasswordVisibility()">
+                            <i [class]="passwordVisible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+                        </button>
+                    </div>
+                    <div *ngIf="loginForm.get('password').hasError('required') && loginForm.get('password').touched"
+                        class="text-danger">
+                        Password is required
+                    </div>
+                    <div *ngIf="loginForm.get('password').hasError('minlength') && loginForm.get('password').touched"
+                        class="text-danger">
+                        Password must be at least 6 characters long
+                    </div>
+                    <div *ngIf="loginForm.get('password').hasError('invalidPassword') && loginForm.get('password').touched"
+                        class="text-danger">
+                        Password must meet the specified criteria
+                    </div>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary underlineHover " [disabled]="!loginForm.valid">Log
+                        In</button>
+                </div>
+            </form>
+            <div class="text-end mt-4">
+                <h6>Do you want to register?</h6>
+                <button class="underlineHover btn btn-primary" [routerLink]="['/register']">Register</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+.form-header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+.employee-form {
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    text-align: left;
+    /* Adjusted to left-align labels */
+}
+
+.employee-form .form-group {
+    margin-bottom: 20px;
+}
+
+.employee-form .form-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    display: block;
+}
+
+.employee-form .form-control {
+    background-color: #f6f6f6;
+    border: 2px solid #f6f6f6;
+    color: #0d0d0d;
+    padding: 15px 10px;
+    font-size: 16px;
+    margin: 5px 0;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.employee-form .form-group.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.employee-form .form-group.flex-container .flex-item {
+    width: 48%;
+}
+
+.employee-form .btn-primary {
+    background-color: #56baed;
+    border: none;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 13px;
+    border-radius: 5px;
+    margin: 5px 0 40px 0;
+    padding: 6px 23px;
+
+}
+
+.employee-form .btn-primary:hover {
+    background-color: #39ace7;
+}

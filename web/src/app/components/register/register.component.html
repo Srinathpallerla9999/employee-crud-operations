@@ -1,0 +1,97 @@
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="text-center mb-4">
+                <img src="../../../assets/images/login.png" class="img-fluid" alt="User Icon" />
+            </div>
+            <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control" formControlName="name" name="name"
+                        placeholder="First Name">
+                    <div *ngIf="registerForm.get('name').hasError('required') && registerForm.get('name').touched"
+                        class="text-danger">
+                        Email is required
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control" formControlName="surname" name="name"
+                        placeholder="Last Name">
+                    <div *ngIf="registerForm.get('surname').hasError('required') && registerForm.get('surname').touched"
+                        class="text-danger">
+                        Email is required
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" autocomplete="off" class="form-control" formControlName="email" name="email"
+                        placeholder="Email">
+                    <div *ngIf="registerForm.get('email').hasError('required') && registerForm.get('email').touched"
+                        class="text-danger">
+                        Email is required
+                    </div>
+                    <div *ngIf="registerForm.get('email').hasError('email') && registerForm.get('email').touched"
+                        class="text-danger">
+                        Invalid email format
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="d-flex">
+                        <input type="{{passwordType}}" autocomplete="off" class="form-control" formControlName="password"
+                            name="password" placeholder="Password">
+                        <button class="btn btn-outline-secondary border-0" type="button"
+                            (click)="togglePasswordVisibility('password')">
+                            <i [class]="isVisible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+                        </button>
+                    </div>
+                    <div *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched"
+                        class="text-danger">
+                        Password is required
+                    </div>
+                    <div *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched"
+                        class="text-danger">
+                        Password must be at least 6 characters long
+                    </div>
+                    <div *ngIf="registerForm.get('password').hasError('invalidPassword') && registerForm.get('password').touched"
+                        class="text-danger">
+                        Password must meet the specified criteria
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="d-flex">
+
+                        <input type="{{confirmPasswordType}}" autocomplete="off" class="form-control" formControlName="confirm_password"
+                            name="confirm_password" placeholder="Confirm Password">
+                        <button class="btn btn-outline-secondary border-0" type="button"
+                            (click)="togglePasswordVisibility('confirmPassword')">
+                            <i [class]="isVisible ? 'bi bi-eye' : 'bi bi-eye-slash'"></i>
+                        </button>
+                    </div>
+                    <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirm_password').touched"
+                        class="text-danger">
+                        Passwords do not match
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" autocomplete="off" class="form-control" formControlName="phone_no" name="phone_no"
+                        placeholder="Phone Number">
+                    <div *ngIf="registerForm.get('phone_no').hasError('required') && registerForm.get('phone_no').touched"
+                        class="text-danger">
+                        Phone Number is required
+                    </div>
+                    <div *ngIf="registerForm.get('phone_no').hasError('invalidPhoneNumber') && registerForm.get('phone_no').touched"
+                        class="text-danger">
+                        Invalid phone number format
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary underlineHover"
+                        [disabled]="!registerForm.valid">Register</button>
+                </div>
+            </form>
+            <div class="text-end mt-4">
+                <h6>Do you already have an account?</h6>
+                <button class="underlineHover btn btn-primary" [routerLink]="['/login']">Login</button>
+            </div>
+        </div>
+    </div>
+</div>

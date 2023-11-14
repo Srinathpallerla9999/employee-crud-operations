@@ -1,0 +1,43 @@
+/* Base styling for anchors */
+.header1 {
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .header1:hover {
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .navbar1 {
+    background-color: #3498db;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 40px 0px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .dropdown1 {
+    cursor: pointer;
+  }
+  
+  .dropdown1:hover {
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .rounded-circle {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #ccc;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+  }
+  

@@ -1,0 +1,76 @@
+
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm)" class="employee-form">
+  <h2 class="form-header">Add Employee Details</h2>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" autocomplete="off" formControlName="name" name="name">
+    <div *ngIf="formControls.name.hasError('required') && formControls.name.touched" class="text-danger">
+      Name is required
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <label for="surname">Surname</label>
+    <input type="text" class="form-control" autocomplete="off" formControlName="surname" name="surname">
+    <div *ngIf="formControls.surname.hasError('required') && formControls.surname.touched" class="text-danger">
+      Surname is required
+    </div>
+  </div>
+
+  <div class="form-group flex-container">
+    <div class="flex-item">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" autocomplete="off" formControlName="email" name="email">
+      <div *ngIf="formControls.email.hasError('required') && formControls.email.touched" class="text-danger">
+        Email is required
+      </div>
+      <div *ngIf="formControls.email.hasError('email') && formControls.email.touched" class="text-danger">
+        Invalid email format
+      </div>
+    </div>
+
+    <div class="flex-item">
+      <label for="phoneNo">Phone Number</label>
+      <input type="text" class="form-control" autocomplete="off" formControlName="phone_no" name="phone_no">
+      <div *ngIf="formControls.phone_no.hasError('required') && formControls.phone_no.touched" class="text-danger">
+        Phone Number is required
+        </div>
+        <div *ngIf="employeeForm.get('phone_no').hasError('invalidPhoneNumber') && employeeForm.get('phone_no').touched"
+          class="text-danger">
+          Invalid phone number format
+        </div>
+        </div>
+  </div>
+
+  <div class="form-group flex-container">
+    <div class="flex-item">
+      <label for="DOJ">Date of Joining</label>
+      <input type="text" class="form-control" autocomplete="off" formControlName="DOJ" name="DOJ">
+      <div *ngIf="formControls.DOJ.hasError('required') && formControls.DOJ.touched" class="text-danger">
+        Date of Joining is required
+      </div>
+    </div>
+
+    <div class="flex-item">
+      <label for="salary">Salary</label>
+      <input type="number" class="form-control" autocomplete="off" formControlName="salary" name="salary">
+      <div *ngIf="formControls.salary.hasError('required') && formControls.salary.touched" class="text-danger">
+        Salary is required
+      </div>
+      <div *ngIf="formControls.salary.hasError('invalidSalary') && formControls.salary.touched" class="text-danger">
+        Salary must be a positive number
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group d-flex">
+    <input type="checkbox" id="presentEmployee" formControlName="present_employee" name="present_employee" style="margin-right: 10px;">
+    <label for="presentEmployee">Present Employee</label>
+  </div>
+  <div class="text-end">
+    <button type="submit" class="btn btn-primary underlineHover " [disabled]="!employeeForm.valid">Submit</button>
+</div>
+
+</form>
+
+
